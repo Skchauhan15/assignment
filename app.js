@@ -5,7 +5,6 @@ const fileUpload = require("express-fileupload");
 var http = require("http").Server(app);
 const { connect_socket } = require("./src/modules/task/socketio");
 const userRouter = require("./src/modules/user/user_routes");
-const uploadRouter = require("./src/modules/uploads/upload.routes");
 const taskRouter = require('./src/modules/task/task_router');
 const adminRouter = require("./src/modules/admin/admin_router");
 const ratelimit = require("express-rate-limit");
@@ -21,7 +20,6 @@ app.use(express.json()); //in latest express we don't need bodyparser express.js
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieparser());
 app.use(cors({ origin: "*" }));
-app.use(fileUpload());
 app.use(ratelimiter)
 
 const port = process.env.PORT ||5000;
@@ -46,8 +44,8 @@ app.get("/", async function (req, res) {
 });
 app.use("/admin", adminRouter);
 app.use("/user", userRouter);
-app.use("/upload", uploadRouter);
 app.use("/task", taskRouter)
+
 http.listen(port, function (err) {
   if (err) {
     console.log(err);

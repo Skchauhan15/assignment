@@ -325,60 +325,6 @@
         ]
       }
     },
-    "/user/resend/phone/otp": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "summary": "User Resend Mobile OTP Api",
-        "responses": {
-          "default": {
-            "description": "successful operation"
-          }
-        },
-        "security": [
-          {
-            "access_token": [
-              "authorization"
-            ]
-          }
-        ]
-      }
-    },
-    "/user/send/email/otp": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "summary": "User Send Email OTP Api",
-        "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/send_email_otp"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/send_email_otp"
-              }
-            }
-          }
-        },
-        "responses": {
-          "default": {
-            "description": "successful operation"
-          }
-        },
-        "security": [
-          {
-            "access_token": [
-              "authorization"
-            ]
-          }
-        ]
-      }
-    },
     "/user/other": {
       "get": {
         "tags": [

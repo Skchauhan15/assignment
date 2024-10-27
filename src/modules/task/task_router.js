@@ -15,7 +15,7 @@ router.post("/",validateCreateTask, verifyToken, authRole(['MANAGER']), Task_Con
 router.get("/", verifyToken, authRole(['MANAGER',"USER"]), Task_Controller.get_tasks); /// different task for user and manager
 router.put("/:_id", validateEditTask,verifyToken, authRole(['MANAGER']), verifyToken, Task_Controller.edit_task); 
 router.get("/:_id", verifyToken, authRole(['MANAGER',"USER"]), Task_Controller.get_task_detail);
-router.delete("/:_id", verifyToken, authRole(['ADMIN']), Task_Controller.delete_task);
+router.delete("/:_id", verifyToken, authRole(['ADMIN',"MANAGER"]), Task_Controller.delete_task);
 
 router.put("/status/:_id", validateStatusUpdate, verifyToken, authRole(['USER','MANAGER']), Task_Controller.change_status);  // for user manager and admin
 // task assignment

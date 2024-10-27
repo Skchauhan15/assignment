@@ -4,9 +4,6 @@
          "inputFile": "./src/modules/user/user_swagger.json"
         },
         {
-            "inputFile": "./src/modules/uploads/upload_swagger.json"
-        },
-        {
             "inputFile": "./src/modules/task/task_swagger.json"
         },
         {
