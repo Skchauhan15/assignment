@@ -14,6 +14,10 @@ This project have 3 main module.
 2.Admin Module
 3.Task Module
 
+open api - link - 
+for local system - http://localhost:5000/docs
+
+
 USER Module
 user/signup -- for signup process                 for user only
 user/verify-email -- to verify email              for user and manager 
@@ -54,6 +58,30 @@ put - task/assign/_id - to assign the task to a user  for admin and manager user
 
 Notice
 * All the email is sent with the template with minimum text which can we rebuild as need.
+* code written in js with express to remove complication to understand
+* User api try to provide all flow of signup and login
+* rate limit is applied 
+* nodemailer is used to send email templates
+* openapi version 3.3 is used
+* all the task and user api is consumed with JOI validation
+* twilio is setup but not used as its a paid service
+* all the get api is provided with pagination and limit
+* all password saved after hashing 
+
+
+
+#env variable 
+MONGO='mongodb://localhost:27017/assignment'
+TOKEN_KEY="assignment"
+EMAIL = 'sumit.k.henceforth@gmail.com'   // don't use personal creds everywhere
+PASSWORD =         // 
+MONGODB=mongodb://127.0.0.1:27017/assignment
+ADMIN_DEFAULT_EMAIL="admin123@yopmail.com"
+ADMIN_DEFAULT_PASSWORD="Admin123@"
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+TWILIO_PHONE=
+
 
 
 
