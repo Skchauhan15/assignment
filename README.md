@@ -32,7 +32,10 @@ user/resend/otp - common api to resend otp                                      
 user/other  --  only for manager and admin to get the users list        for manager and admin only
 
 
-ADMIN Module
+ADMIN Module  
+ admin acccount 
+ email - admin123@yopmail.com
+ password - Admin123@
 post - admin/manager - to create the manager role based access for admin only
 get - admin/manger - to get the list of the manager  access for admin only
 post - admin/team - to create the team  rbc - admin
@@ -60,21 +63,22 @@ Notice
 * All the email is sent with the template with minimum text which can we rebuild as need.
 * code written in js with express to remove complication to understand
 * User api try to provide all flow of signup and login
-* rate limit is applied 
 * nodemailer is used to send email templates
 * openapi version 3.3 is used
 * all the task and user api is consumed with JOI validation
 * twilio is setup but not used as its a paid service
-* all the get api is provided with pagination and limit
-* all password saved after hashing 
+* pagination and limit, search and filters is applied. 
+* all password are hashing with bycrpt  
+* socket io is used to realtime update as taskAssigned.
+* rate limit is applied 
 
 
 
 #env variable 
 MONGO='mongodb://localhost:27017/assignment'
 TOKEN_KEY="assignment"
-EMAIL = 'sumit.k.henceforth@gmail.com'   // don't use personal creds everywhere
-PASSWORD =         // 
+EMAIL =             // required for nodemailer
+PASSWORD =         //   required 
 MONGODB=mongodb://127.0.0.1:27017/assignment
 ADMIN_DEFAULT_EMAIL="admin123@yopmail.com"
 ADMIN_DEFAULT_PASSWORD="Admin123@"
