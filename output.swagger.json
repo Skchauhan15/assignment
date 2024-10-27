@@ -17,10 +17,6 @@
       "description": "User related apis for user admin and manager"
     },
     {
-      "name": "Upload",
-      "description": "Upload api"
-    },
-    {
       "name": "Task",
       "description": "Task related apis"
     },
@@ -342,44 +338,6 @@
             "$ref": "#/components/parameters/limit"
           }
         ],
-        "responses": {
-          "default": {
-            "description": "successful operation"
-          }
-        },
-        "security": [
-          {
-            "access_token": [
-              "authorization"
-            ]
-          }
-        ]
-      }
-    },
-    "/upload/upload_file": {
-      "post": {
-        "tags": [
-          "Upload"
-        ],
-        "summary": "Upload file Api",
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "file": {
-                    "type": "string",
-                    "format": "binary"
-                  }
-                },
-                "required": [
-                  "file"
-                ]
-              }
-            }
-          }
-        },
         "responses": {
           "default": {
             "description": "successful operation"

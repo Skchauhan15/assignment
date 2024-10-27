@@ -1,6 +1,11 @@
 # assignment
 
 To run in local system 
+pre requirement 
+node 18 or +
+mongodb 
+vs code 
+
 1.clone the repository
 2. run command in terminal 
    cd assignment 
