@@ -1,0 +1,356 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Assignment Api Documentation",
+      "description": "Api Documentation",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:5000/",
+        "description": "local server 1"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Admin",
+        "description": "Admin related apis"
+      }
+    ],
+    "paths": {
+      "/admin/manager": {
+        "post": {
+          "tags": ["Admin"],
+          "summary": "manager create Api",
+          "requestBody": {
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/manager_create"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/manager_create"
+                }
+              }
+            }
+          },
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          },
+          "security": [
+            {
+              "access_token": ["authorization"]
+            }
+          ]
+        },
+      "get": {
+        "tags": ["Admin"],
+        "summary": "Manager lists api for admin ",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "$ref": "#/components/parameters/pagination"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": ["authorization"]
+          }
+        ]
+      }
+    },
+      "/admin/team": {
+        "post": {
+          "tags": ["Admin"],
+          "summary": "create Team Api",
+          "requestBody": {
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/team_create"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/team_create"
+                }
+              }
+            }
+          },
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          },
+          "security": [
+            {
+              "access_token": ["authorization"]
+            }
+          ]
+        },
+        "get": {
+          "tags": ["Admin"],
+          "summary": "team lists api for admin ",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/search"
+            },
+            {
+              "$ref": "#/components/parameters/pagination"
+            },
+            {
+              "$ref": "#/components/parameters/limit"
+            }
+          ],
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          },
+          "security": [
+            {
+              "access_token": ["authorization"]
+            }
+          ]
+        }
+      },
+      "/admin/team/{_id}/member":{
+        "get": {
+          "tags": ["Admin"],
+          "summary": "member lists of a team api for admin ",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/get_by_id"
+            },
+            {
+              "$ref": "#/components/parameters/search"
+            },
+            {
+              "$ref": "#/components/parameters/pagination"
+            },
+            {
+              "$ref": "#/components/parameters/limit"
+            }
+          ],
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          },
+          "security": [
+            {
+              "access_token": ["authorization"]
+            }
+          ]
+        }
+      },
+      "/admin/team/{_id}/member/add": {
+        "patch": {
+          "tags": ["Admin"],
+          "summary": "Admin Edit Api",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/get_by_id"
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/member"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/member"
+                }
+              }
+            }
+          },
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          },
+          "security": [
+            {
+              "access_token": ["authorization"]
+            }
+          ]
+        }
+      },
+      "/admin/team/{_id}/member/remove": {
+        "patch": {
+          "tags": ["Admin"],
+          "summary": "Admin Edit Api",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/get_by_id"
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/member"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/member"
+                }
+              }
+            }
+          },
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          },
+          "security": [
+            {
+              "access_token": ["authorization"]
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "manager_create": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "Enter name",
+              "type": "string",
+              "format": "string"
+            },
+            "email": {
+              "description": "Enter email",
+              "type": "string",
+              "format": "string"
+            },
+            "country_code": {
+              "description": "Here comes country_code",
+              "type": "string",
+              "format": "string"
+            },
+            "phone_no": {
+              "description": "Here comes phone_no",
+              "type": "string",
+              "format": "string"
+            },
+            "password": {
+              "description": "Enter your password",
+              "type": "string",
+              "format": "password",
+              "default": "qwerty"
+            }
+          },
+          "required": ["name", "email","password"]
+        },
+        "team_create": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "Enter title",
+              "type": "string"
+            },
+            "description": {
+              "description": "Enter description",
+              "type": "string"
+            },
+            "manager": {
+              "description": "manager_id(user_id)",
+              "type": "string"
+            }
+          },
+          "required": ["name", "description","manager"]
+        },
+        "member": {
+          "type": "object",
+          "properties": {
+            "user_id": {
+              "description": "Enter user_id ",
+              "type": "string"
+            }
+          },
+          "required": ["user_id"]
+        }
+      },
+      "parameters": {
+        "search": {
+          "name": "search",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "style": "form",
+          "explode": true
+        },
+        "pagination": {
+          "name": "pagination",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "number"
+          },
+          "default": 0,
+          "style": "form",
+          "explode": true
+        },
+        "limit": {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "number",
+            "format": "number"
+          },
+          "style": "form",
+          "default": 10,
+          "explode": true
+        },
+        "get_by_id": {
+          "name": "_id",
+          "in": "path",
+          "description": "Pass here id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      },
+      "securitySchemes1": {
+        "access_token": {
+          "type": "apiKey",
+          "name": "token",
+          "in": "header"
+        }
+      },
+      "securitySchemes": {
+        "access_token": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+         }
+       }
+    }
+  }
+
+  

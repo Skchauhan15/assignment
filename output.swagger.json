@@ -1,0 +1,1372 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Assignment Api Documentation",
+    "description": "Api Documentation for user admin and manager",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/",
+      "description": "local server 1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": "User related apis for user admin and manager"
+    },
+    {
+      "name": "Upload",
+      "description": "Upload api"
+    },
+    {
+      "name": "Task",
+      "description": "Task related apis"
+    },
+    {
+      "name": "Admin",
+      "description": "Admin related apis"
+    }
+  ],
+  "paths": {
+    "/user/sign/up": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User Sign Up Api for user",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/user_signup"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/user_signup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/verify/email": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User Verify Email Api",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/verify_otp"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/verify_otp"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Login Api- common for user admin and manager",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/user_login"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/user_login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User Logout Api, common for user admin and manager",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/profile": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User View Profile Api",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User Edit Profile Api",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/edit_profile"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edit_profile"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/change/password": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User Change Password Api",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/change_password"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/change_password"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/forgot/password": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User Forgot Password Api",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/forgot_password"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/forgot_password"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/forgot/verify/otp": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User Forgot Password Verify Otp Api",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/forgot_pass_verify_otp"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/forgot_pass_verify_otp"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/reset/password": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User Reset Password Api",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/reset_password"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/reset_password"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/resend/email/otp": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User Resend Email OTP Api",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/resend/phone/otp": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User Resend Mobile OTP Api",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/send/email/otp": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User Send Email OTP Api",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/send_email_otp"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/send_email_otp"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/other": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Other User lists api for admin and manager(only his team user)",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "$ref": "#/components/parameters/pagination"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    },
+    "/upload/upload_file": {
+      "post": {
+        "tags": [
+          "Upload"
+        ],
+        "summary": "Upload file Api",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "file"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    },
+    "/task": {
+      "post": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Task create Api",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/task_create"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/task_create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Task lists",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "$ref": "#/components/parameters/pagination"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/task_status"
+          },
+          {
+            "$ref": "#/components/parameters/due_date"
+          },
+          {
+            "$ref": "#/components/parameters/priority"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    },
+    "/task/{_id}": {
+      "put": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Task Edit Api",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/get_by_id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/edit_task"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edit_task"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Get Task Detail Api",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/get_by_id"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Delete Task Api",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/get_by_id"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    },
+    "/task/status/{_id}": {
+      "put": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Task status update Api",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/get_by_id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/status_update"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/status_update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    },
+    "/task/assign/{_id}": {
+      "put": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Task Assign api",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/get_by_id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/task_assign"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/task_assign"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/manager": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "manager create Api",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/manager_create"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/manager_create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Manager lists api for admin ",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "$ref": "#/components/parameters/pagination"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/team": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "create Team Api",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/team_create"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/team_create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "team lists api for admin ",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "$ref": "#/components/parameters/pagination"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/team/{_id}/member": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "member lists of a team api for admin ",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/get_by_id"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "$ref": "#/components/parameters/pagination"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/team/{_id}/member/add": {
+      "patch": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Admin Edit Api",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/get_by_id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/member"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/member"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/team/{_id}/member/remove": {
+      "patch": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Admin Edit Api",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/get_by_id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/member"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/member"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "authorization"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "user_signup": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Enter name",
+            "type": "string"
+          },
+          "country_code": {
+            "description": "Enter country_code",
+            "type": "string"
+          },
+          "phone_no": {
+            "description": "Enter phone_no",
+            "type": "string"
+          },
+          "email": {
+            "description": "Enter your email",
+            "type": "string",
+            "format": "email",
+            "default": "john01@yopmail.com"
+          },
+          "password": {
+            "description": "Enter your password",
+            "type": "string",
+            "format": "password",
+            "default": "qwerty"
+          },
+          "fcm_token": {
+            "description": "Enter fcm_token",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "user_login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "Enter your email",
+            "type": "string",
+            "format": "email",
+            "default": "john01@yopmail.com"
+          },
+          "password": {
+            "description": "Enter your password",
+            "type": "string",
+            "format": "password",
+            "default": "qwerty"
+          },
+          "fcm_token": {
+            "description": "Enter fcm_token",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "edit_profile": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Enter name",
+            "type": "string",
+            "format": "string"
+          },
+          "email": {
+            "description": "Enter email",
+            "type": "string",
+            "format": "string"
+          },
+          "country_code": {
+            "description": "Here comes country_code",
+            "type": "string",
+            "format": "string"
+          },
+          "phone_no": {
+            "description": "Here comes phone_no",
+            "type": "string",
+            "format": "string"
+          }
+        },
+        "required": []
+      },
+      "change_password": {
+        "type": "object",
+        "properties": {
+          "old_password": {
+            "description": "Old Password Comes Here",
+            "type": "string",
+            "format": "password"
+          },
+          "new_password": {
+            "description": "New Password Comes Here",
+            "type": "string",
+            "format": "password"
+          }
+        },
+        "required": [
+          "old_password",
+          "new_password"
+        ]
+      },
+      "verify_otp": {
+        "type": "object",
+        "properties": {
+          "otp": {
+            "description": "Enter otp",
+            "type": "Number"
+          }
+        },
+        "required": [
+          "otp"
+        ]
+      },
+      "forgot_password": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "Enter email",
+            "type": "string",
+            "format": "email",
+            "default": "john01@yopmail.com"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "forgot_pass_verify_otp": {
+        "type": "object",
+        "properties": {
+          "unique_code": {
+            "description": "Enter unique code",
+            "type": "string"
+          },
+          "otp": {
+            "description": "Enter otp",
+            "type": "string"
+          }
+        },
+        "required": [
+          "unique_code",
+          "otp"
+        ]
+      },
+      "reset_password": {
+        "type": "object",
+        "properties": {
+          "unique_code": {
+            "description": "Enter unique code",
+            "type": "string"
+          },
+          "new_password": {
+            "description": "Enter new_password",
+            "type": "string"
+          }
+        },
+        "required": [
+          "unique_code",
+          "otp",
+          "new_password"
+        ]
+      },
+      "send_email_otp": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "Enter email",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "task_create": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "description": "Enter title",
+            "type": "string"
+          },
+          "description": {
+            "description": "Enter description",
+            "type": "string"
+          },
+          "due_date": {
+            "description": "in millisecond of 13 digit example -1730022167000 ",
+            "type": "number"
+          },
+          "priority": {
+            "description": "Enter country_code",
+            "type": "string",
+            "enum": [
+              "high",
+              "normal",
+              "low"
+            ]
+          }
+        },
+        "required": [
+          "title",
+          "description",
+          "due_date"
+        ]
+      },
+      "edit_task": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "description": "Enter title",
+            "type": "string"
+          },
+          "description": {
+            "description": "Enter description",
+            "type": "string"
+          },
+          "due_date": {
+            "description": "in millisecond of 13 digit example -1730022167000 ",
+            "type": "number"
+          },
+          "priority": {
+            "description": "Enter country_code",
+            "type": "string",
+            "enum": [
+              "high",
+              "normal",
+              "low"
+            ]
+          }
+        },
+        "required": []
+      },
+      "task_assign": {
+        "type": "object",
+        "properties": {
+          "assign_to": {
+            "description": "Enter user_id ",
+            "type": "string",
+            "default": "qwerty"
+          }
+        },
+        "required": [
+          "assign_to"
+        ]
+      },
+      "status_update": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "description": "select status",
+            "type": "string",
+            "enum": [
+              "pending",
+              "progress",
+              "complete"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "manager_create": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Enter name",
+            "type": "string",
+            "format": "string"
+          },
+          "email": {
+            "description": "Enter email",
+            "type": "string",
+            "format": "string"
+          },
+          "country_code": {
+            "description": "Here comes country_code",
+            "type": "string",
+            "format": "string"
+          },
+          "phone_no": {
+            "description": "Here comes phone_no",
+            "type": "string",
+            "format": "string"
+          },
+          "password": {
+            "description": "Enter your password",
+            "type": "string",
+            "format": "password",
+            "default": "qwerty"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "password"
+        ]
+      },
+      "team_create": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Enter title",
+            "type": "string"
+          },
+          "description": {
+            "description": "Enter description",
+            "type": "string"
+          },
+          "manager": {
+            "description": "manager_id(user_id)",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "manager"
+        ]
+      },
+      "member": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "description": "Enter user_id ",
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id"
+        ]
+      }
+    },
+    "parameters": {
+      "search": {
+        "name": "search",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "style": "form",
+        "explode": true
+      },
+      "pagination": {
+        "name": "pagination",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "number"
+        },
+        "default": 0,
+        "style": "form",
+        "explode": true
+      },
+      "limit": {
+        "name": "limit",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "number",
+          "format": "number"
+        },
+        "style": "form",
+        "default": 10,
+        "explode": true
+      },
+      "get_by_id": {
+        "name": "_id",
+        "in": "path",
+        "description": "Pass here id",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "content_type": {
+        "name": "type",
+        "in": "query",
+        "description": "Pass here type",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "enum": [
+            "ABOUT_US",
+            "TERMS_AND_CONDITIONS",
+            "WHAT_TO_DO",
+            "PRIVACY_POLICY"
+          ]
+        }
+      },
+      "task_status": {
+        "name": "status",
+        "in": "query",
+        "description": "Pass here type",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "progress",
+            "complete"
+          ]
+        }
+      },
+      "priority": {
+        "name": "priority",
+        "in": "query",
+        "description": "Pass here type",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "enum": [
+            "high",
+            "low",
+            "normal"
+          ]
+        }
+      },
+      "due_date": {
+        "name": "due_date",
+        "description": "in millisecond of 13 digit example -1730022167000 ",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "number"
+        },
+        "style": "form",
+        "explode": true
+      }
+    },
+    "securitySchemes": {
+      "access_token": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

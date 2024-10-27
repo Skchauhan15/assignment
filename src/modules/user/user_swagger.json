@@ -1,0 +1,592 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Assignment Api Documentation",
+    "description": "Api Documentation for user admin and manager",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/",
+      "description": "local server 1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": "User related apis for user admin and manager"
+    }
+  ],
+  "paths": {
+    "/user/sign/up": {
+      "post": {
+        "tags": ["User"],
+        "summary": "User Sign Up Api for user",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/user_signup"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/user_signup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/verify/email": {
+      "post": {
+        "tags": ["User"],
+        "summary": "User Verify Email Api",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/verify_otp"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/verify_otp"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": ["authorization"]
+          }
+        ]
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Login Api- common for user admin and manager",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/user_login"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/user_login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "put": {
+        "tags": ["User"],
+        "summary": "User Logout Api, common for user admin and manager",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": ["authorization"]
+          }
+        ]
+      }
+    },
+    "/user/profile": {
+      "get": {
+        "tags": ["User"],
+        "summary": "User View Profile Api",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": ["authorization"]
+          }
+        ]
+      },
+      "put": {
+        "tags": ["User"],
+        "summary": "User Edit Profile Api",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/edit_profile"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edit_profile"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": ["authorization"]
+          }
+        ]
+      }
+    },
+    "/user/change/password": {
+      "patch": {
+        "tags": ["User"],
+        "summary": "User Change Password Api",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/change_password"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/change_password"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": ["authorization"]
+          }
+        ]
+      }
+    },
+    "/user/forgot/password": {
+      "put": {
+        "tags": ["User"],
+        "summary": "User Forgot Password Api",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/forgot_password"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/forgot_password"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/forgot/verify/otp": {
+      "post": {
+        "tags": ["User"],
+        "summary": "User Forgot Password Verify Otp Api",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/forgot_pass_verify_otp"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/forgot_pass_verify_otp"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/reset/password": {
+      "post": {
+        "tags": ["User"],
+        "summary": "User Reset Password Api",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/reset_password"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/reset_password"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/resend/email/otp": {
+      "post": {
+        "tags": ["User"],
+        "summary": "User Resend Email OTP Api",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": ["authorization"]
+          }
+        ]
+      }
+    },
+    "/user/resend/phone/otp": {
+      "post": {
+        "tags": ["User"],
+        "summary": "User Resend Mobile OTP Api",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": ["authorization"]
+          }
+        ]
+      }
+    },
+    "/user/send/email/otp": {
+      "post": {
+        "tags": ["User"],
+        "summary": "User Send Email OTP Api",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/send_email_otp"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/send_email_otp"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": ["authorization"]
+          }
+        ]
+      }
+    },
+    "/user/other":{
+      "get": {
+        "tags": ["User"],
+        "summary": "Other User lists api for admin and manager(only his team user)",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "$ref": "#/components/parameters/pagination"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": ["authorization"]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "user_signup": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Enter name",
+            "type": "string"
+          },
+          "country_code": {
+            "description": "Enter country_code",
+            "type": "string"
+          },
+          "phone_no": {
+            "description": "Enter phone_no",
+            "type": "string"
+          },
+          "email": {
+            "description": "Enter your email",
+            "type": "string",
+            "format": "email",
+            "default": "john01@yopmail.com"
+          },
+          "password": {
+            "description": "Enter your password",
+            "type": "string",
+            "format": "password",
+            "default": "qwerty"
+          },
+          "fcm_token": {
+            "description": "Enter fcm_token",
+            "type": "string"
+          }
+        },
+        "required": ["email", "password"]
+      },
+      "user_login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "Enter your email",
+            "type": "string",
+            "format": "email",
+            "default": "john01@yopmail.com"
+          },
+          "password": {
+            "description": "Enter your password",
+            "type": "string",
+            "format": "password",
+            "default": "qwerty"
+          },
+          "fcm_token": {
+            "description": "Enter fcm_token",
+            "type": "string"
+          }
+        },
+        "required": ["email", "password"]
+      },
+      "edit_profile": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Enter name",
+            "type": "string",
+            "format": "string"
+          },
+          "email": {
+            "description": "Enter email",
+            "type": "string",
+            "format": "string"
+          },
+          "country_code": {
+            "description": "Here comes country_code",
+            "type": "string",
+            "format": "string"
+          },
+          "phone_no": {
+            "description": "Here comes phone_no",
+            "type": "string",
+            "format": "string"
+          }
+        },
+        "required": []
+      },
+      "change_password": {
+        "type": "object",
+        "properties": {
+          "old_password": {
+            "description": "Old Password Comes Here",
+            "type": "string",
+            "format": "password"
+          },
+          "new_password": {
+            "description": "New Password Comes Here",
+            "type": "string",
+            "format": "password"
+          }
+        },
+        "required": ["old_password", "new_password"]
+      },
+      "verify_otp": {
+        "type": "object",
+        "properties": {
+          "otp": {
+            "description": "Enter otp",
+            "type": "Number"
+          }
+        },
+        "required": ["otp"]
+      },
+      "forgot_password": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "Enter email",
+            "type": "string",
+            "format": "email",
+            "default": "john01@yopmail.com"
+          }
+        },
+        "required": ["email"]
+      },
+      "forgot_pass_verify_otp": {
+        "type": "object",
+        "properties": {
+          "unique_code": {
+            "description": "Enter unique code",
+            "type": "string"
+          },
+          "otp": {
+            "description": "Enter otp",
+            "type": "string"
+          }
+        },
+        "required": ["unique_code", "otp"]
+      },
+      "reset_password": {
+        "type": "object",
+        "properties": {
+          "unique_code": {
+            "description": "Enter unique code",
+            "type": "string"
+          },
+          "new_password": {
+            "description": "Enter new_password",
+            "type": "string"
+          }
+        },
+        "required": ["unique_code", "otp", "new_password"]
+      },
+      "send_email_otp": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "Enter email",
+            "type": "string"
+          }
+        },
+        "required": ["email"]
+      }
+    },
+    "parameters": {
+      "search": {
+        "name": "search",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "style": "form",
+        "explode": true
+      },
+      "pagination": {
+        "name": "pagination",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "number"
+        },
+        "default": 0,
+        "style": "form",
+        "explode": true
+      },
+      "limit": {
+        "name": "limit",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "number",
+          "format": "number"
+        },
+        "style": "form",
+        "default": 10,
+        "explode": true
+      },
+      "get_by_id": {
+        "name": "_id",
+        "in": "path",
+        "description": "Pass here id",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "content_type": {
+        "name": "type",
+        "in": "query",
+        "description": "Pass here type",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "enum": [
+            "ABOUT_US",
+            "TERMS_AND_CONDITIONS",
+            "WHAT_TO_DO",
+            "PRIVACY_POLICY"
+          ]
+        }
+      }
+    },
+    "securitySchemes1": {
+      "access_token": {
+        "type": "apiKey",
+        "name": "token",
+        "in": "header"
+      }
+    },
+   "securitySchemes": {
+     "access_token": {
+       "type": "http",
+       "scheme": "bearer",
+       "bearerFormat": "JWT"
+      }
+    }
+ 
+  }
+}

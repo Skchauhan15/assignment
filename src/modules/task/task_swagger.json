@@ -1,0 +1,397 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Assignment Api Documentation",
+      "description": "Api Documentation",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:5000/",
+        "description": "local server 1"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Task",
+        "description": "Task related apis"
+      }
+    ],
+    "paths": {
+      "/task": {
+        "post": {
+          "tags": ["Task"],
+          "summary": "Task create Api",
+          "requestBody": {
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/task_create"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/task_create"
+                }
+              }
+            }
+          },
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          },
+          "security": [
+            {
+              "access_token": ["authorization"]
+            }
+          ]
+        },
+        "get": {
+          "tags": ["Task"],
+          "summary": "Task lists",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/search"
+            },
+            {
+              "$ref": "#/components/parameters/pagination"
+            },
+            {
+              "$ref": "#/components/parameters/limit"
+            },
+            {
+              "$ref": "#/components/parameters/task_status"
+            },
+            {
+              "$ref": "#/components/parameters/due_date"
+            }
+            ,
+            {
+              "$ref": "#/components/parameters/priority"
+            }
+          ],
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          },
+          "security": [
+            {
+              "access_token": ["authorization"]
+            }
+          ]
+        }
+      },
+      "/task/{_id}": {
+        "put": {
+          "tags": ["Task"],
+          "summary": "Task Edit Api",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/get_by_id"
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/edit_task"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/edit_task"
+                }
+              }
+            }
+          },
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          },
+          "security": [
+            {
+              "access_token": ["authorization"]
+            }
+          ]
+        },
+        "get": {
+          "tags": ["Task"],
+          "summary": "Get Task Detail Api",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/get_by_id"
+            }
+          ],
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          },
+          "security": [
+            {
+              "access_token": ["authorization"]
+            }
+          ]
+        },
+        "delete": {
+          "tags": ["Task"],
+          "summary": "Delete Task Api",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/get_by_id"
+            }
+          ],
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          },
+          "security": [
+            {
+              "access_token": ["authorization"]
+            }
+          ]
+        }
+      },
+      "/task/status/{_id}": {
+        "put": {
+          "tags": ["Task"],
+          "summary": "Task status update Api",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/get_by_id"
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/status_update"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/status_update"
+                }
+              }
+            }
+          },
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          },
+          "security": [
+            {
+              "access_token": ["authorization"]
+            }
+          ]
+        }
+      },
+      "/task/assign/{_id}": {
+        "put": {
+          "tags": ["Task"],
+          "summary": "Task Assign api",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/get_by_id"
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/task_assign"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/task_assign"
+                }
+              }
+            }
+          },
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          },
+          "security": [
+            {
+              "access_token": ["authorization"]
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "task_create": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "description": "Enter title",
+              "type": "string"
+            },
+            "description": {
+              "description": "Enter description",
+              "type": "string"
+            },
+           "due_date": {
+            "description":"in millisecond of 13 digit example -1730022167000 ",
+              "type": "number"
+            },
+            "priority": {
+              "description": "Enter country_code",
+              "type": "string",
+              "enum":["high","normal","low"]
+            }
+          },
+          "required": ["title", "description","due_date"]
+        },
+        "edit_task": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "description": "Enter title",
+              "type": "string"
+            },
+            "description": {
+              "description": "Enter description",
+              "type": "string"
+            },
+            "due_date": {
+            "description":"in millisecond of 13 digit example -1730022167000 ",
+              "type": "number"
+            },
+            "priority": {
+              "description": "Enter country_code",
+              "type": "string",
+              "enum":["high","normal","low"]
+            }
+          },
+          "required": []
+        },
+        "task_assign": {
+          "type": "object",
+          "properties": {
+            "assign_to": {
+              "description": "Enter user_id ",
+              "type": "string",
+              "default": "qwerty"
+            }
+          },
+          "required": ["assign_to"]
+        },
+        "status_update": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "description": "select status",
+              "type": "string",
+              "enum": ["pending","progress","complete"]
+            }
+          },
+          "required": ["status"]
+        }
+      },
+      "parameters": {
+        "search": {
+          "name": "search",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "style": "form",
+          "explode": true
+        },
+        "pagination": {
+          "name": "pagination",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "number"
+          },
+          "default": 0,
+          "style": "form",
+          "explode": true
+        },
+        "limit": {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "number",
+            "format": "number"
+          },
+          "style": "form",
+          "default": 10,
+          "explode": true
+        },
+        "get_by_id": {
+          "name": "_id",
+          "in": "path",
+          "description": "Pass here id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        "task_status": {
+          "name": "status",
+          "in": "query",
+          "description": "Pass here type",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "enum": [
+             "pending","progress","complete"
+            ]
+          }
+        },
+        "priority": {
+          "name": "priority",
+          "in": "query",
+          "description": "Pass here type",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "enum": [
+             "high","low","normal"
+            ]
+          }
+        },
+        "due_date": {
+          "name": "due_date",
+          "description":"in millisecond of 13 digit example -1730022167000 ",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "number"
+          },
+          "style": "form",
+          "explode": true
+        }
+      },
+      "securitySchemes1": {
+        "access_token": {
+          "type": "apiKey",
+          "name": "token",
+          "in": "header"
+        }
+      },
+      "securitySchemes": {
+        "access_token": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+         }
+       }
+    }
+  }
+
+  

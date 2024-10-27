@@ -1,0 +1,17 @@
+{
+    "inputs":[
+        {
+         "inputFile": "./src/modules/user/user_swagger.json"
+        },
+        {
+            "inputFile": "./src/modules/uploads/upload_swagger.json"
+        },
+        {
+            "inputFile": "./src/modules/task/task_swagger.json"
+        },
+        {
+            "inputFile":"./src/modules/admin/admin_swagger.json"
+        }
+    ],
+    "output": "./output.swagger.json"
+}
